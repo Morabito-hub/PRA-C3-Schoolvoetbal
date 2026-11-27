@@ -1,36 +1,50 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title', 'Schoolvoetbaltoernooi')</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="bg-white text-school-charcoal flex flex-col min-h-screen">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    
+    <header class="bg-school-charcoal text-white shadow-sm">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+            <a href="{{ url('/') }}" class="text-xl font-bold text-white">
+                (Logo)
+            </a>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+            
+            <nav class="flex flex-wrap items-center gap-6 text-sm font-medium">
+                <a href="{{ url('/') }}" class="hover:text-school-light transition">Home</a>
+                <a href="{{ url('/wedstrijdschema') }}" class="hover:text-school-light transition">Wedstrijdschema</a>
+                <a href="{{ url('/inschrijven') }}" class="hover:text-school-light transition">Inschrijven</a>
+                <a href="{{ url('/contact') }}" class="hover:text-school-light transition">Contact</a>
+                <a href="{{ url('/login') }}" class="bg-white text-school-charcoal px-3 py-1 rounded shadow-xs hover:bg-school-cream transition">
+                    Inloggen
+                </a>
+            </nav>
         </div>
-    </body>
+    </header>
+
+    
+    <main class=" bg-school-cream flex-grow">
+        @yield('content')
+    </main>
+
+    
+    <footer class="bg-school-charcoal text-white py-6">
+        <div class="max-w-5xl mx-auto px-6 flex flex-wrap items-center justify-center gap-3 text-sm">
+            <span class="font-semibold">(Logo)</span>
+            <span>·</span>
+            <a href="{{ url('/contact') }}" class="hover:text-school-light hover:underline">Contact</a>
+            <span>·</span>
+            <a href="{{ url('/spelregels') }}" class="hover:text-school-light hover:underline">Spelregels</a>
+            <span>·</span>
+            <a href="{{ url('/privacy') }}" class="hover:text-school-light hover:underline">Privacy</a>
+        </div>
+    </footer>
+
+</body>
 </html>
