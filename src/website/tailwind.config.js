@@ -11,6 +11,14 @@ export default {
 
     theme: {
         extend: {
+            colors: {
+                school: {
+                    green: '#2E7D32',
+                    light: '#A5D66A',
+                    cream: '#FFF3CD',
+                    charcoal: '#263238',
+                },
+            },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
